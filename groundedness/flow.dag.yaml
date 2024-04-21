@@ -1,0 +1,20 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+inputs:
+  source:
+    type: string
+  statement:
+    type: string
+outputs:
+  groundedness:
+    type: string
+    reference: ${get_score.output}
+nodes:
+- name: get_score
+  type: python
+  source:
+    type: code
+    path: trulens_groundedness.py
+  inputs:
+    source: ${inputs.source}
+    statement: ${inputs.statement}

@@ -1,0 +1,321 @@
+{
+  "flow_runs": [
+    {
+      "run_id": "fc048467-e5dd-4228-93c5-6d7cad6e85a2_0",
+      "status": "Completed",
+      "error": null,
+      "inputs": {
+        "source": "${data.source}",
+        "statement": "${data.statement}"
+      },
+      "output": {
+        "groundedness": 0.0
+      },
+      "metrics": {
+        "groundedness": 0.0
+      },
+      "request": null,
+      "parent_run_id": "fc048467-e5dd-4228-93c5-6d7cad6e85a2",
+      "root_run_id": "fc048467-e5dd-4228-93c5-6d7cad6e85a2",
+      "source_run_id": null,
+      "flow_id": "default_flow_id",
+      "start_time": "2024-04-21T00:06:35.140904Z",
+      "end_time": "2024-04-21T00:06:36.060480Z",
+      "index": 0,
+      "api_calls": [
+        {
+          "name": "flow",
+          "node_name": "flow",
+          "type": "Flow",
+          "start_time": 1713683195.140904,
+          "end_time": 1713683196.06048,
+          "children": [
+            {
+              "name": "get_score",
+              "type": "Function",
+              "inputs": {
+                "source": "${data.source}",
+                "statement": "${data.statement}"
+              },
+              "output": 0.0,
+              "start_time": 1713683195.156812,
+              "end_time": 1713683196.059007,
+              "error": null,
+              "children": [
+                {
+                  "name": "openai_chat",
+                  "type": "LLM",
+                  "inputs": {
+                    "messages": [
+                      {
+                        "role": "system",
+                        "content": "You are a INFORMATION OVERLAP classifier; providing the overlap of information between the source and statement.\n        Respond only as a number from 0 to 10 where 0 is no information overlap and 10 is all information is overlapping.\n        Never elaborate."
+                      },
+                      {
+                        "role": "user",
+                        "content": "SOURCE: ${data.source}\n        \n        Hypothesis: ${data.statement}\n        \n        Please answer with the template below for all statement sentences:\n\n        Statement Sentence: <Sentence>, \n        Supporting Evidence: <Choose the exact unchanged sentences in the source that can answer the statement, if nothing matches, say NOTHING FOUND>\n        Score: <Output a number between 0-10 where 0 is no information overlap and 10 is all information is overlapping>\n        \nStatement Sentence: {statement_sentence} \nSupporting Evidence: {supporting_evidence} \nScore: {score} \n"
+                      }
+                    ],
+                    "model": "gpt-3.5-turbo",
+                    "temperature": 0.0,
+                    "seed": 123
+                  },
+                  "output": {
+                    "id": "chatcmpl-9GF111OPpPOxFyo4pMCP3aUYY9DtL",
+                    "choices": [
+                      {
+                        "finish_reason": "stop",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                          "content": "Statement Sentence: The sky is blue, \nSupporting Evidence: NOTHING FOUND \nScore: 0 ",
+                          "role": "assistant",
+                          "function_call": null,
+                          "tool_calls": null
+                        }
+                      }
+                    ],
+                    "created": 1713657995,
+                    "model": "gpt-3.5-turbo-0125",
+                    "object": "chat.completion",
+                    "system_fingerprint": "fp_c2295e73ad",
+                    "usage": {
+                      "completion_tokens": 21,
+                      "prompt_tokens": 182,
+                      "total_tokens": 203
+                    }
+                  },
+                  "start_time": 1713683195.428267,
+                  "end_time": 1713683196.043501,
+                  "error": null,
+                  "children": [],
+                  "node_name": null,
+                  "parent_id": "590d3402-d225-4e31-8540-5b8c51c9a128",
+                  "id": "ce47dbcf-17a9-49aa-9a6f-3d6eefc37188",
+                  "function": "openai.resources.chat.completions.Completions.create",
+                  "system_metrics": {
+                    "completion_tokens": 21,
+                    "prompt_tokens": 182,
+                    "total_tokens": 203
+                  }
+                }
+              ],
+              "node_name": "get_score",
+              "parent_id": "",
+              "id": "590d3402-d225-4e31-8540-5b8c51c9a128",
+              "function": "get_score",
+              "system_metrics": {
+                "completion_tokens": 21,
+                "prompt_tokens": 182,
+                "total_tokens": 203
+              }
+            }
+          ],
+          "system_metrics": {
+            "duration": 0.919576,
+            "prompt_tokens": 182,
+            "completion_tokens": 21,
+            "total_tokens": 203
+          },
+          "inputs": {
+            "source": "${data.source}",
+            "statement": "${data.statement}"
+          },
+          "output": {
+            "groundedness": 0.0
+          },
+          "error": null
+        }
+      ],
+      "name": "",
+      "description": "",
+      "tags": null,
+      "system_metrics": {
+        "duration": 0.919576,
+        "prompt_tokens": 182,
+        "completion_tokens": 21,
+        "total_tokens": 203
+      },
+      "result": {
+        "groundedness": 0.0
+      },
+      "upload_metrics": false,
+      "otel_trace_id": "8e235a7f56a977f1aa773d80d2588c96",
+      "message_format": "basic"
+    }
+  ],
+  "node_runs": [
+    {
+      "node": "get_score",
+      "flow_run_id": "fc048467-e5dd-4228-93c5-6d7cad6e85a2",
+      "run_id": "fc048467-e5dd-4228-93c5-6d7cad6e85a2_get_score_0",
+      "status": "Completed",
+      "inputs": {
+        "source": "${data.source}",
+        "statement": "${data.statement}"
+      },
+      "output": 0.0,
+      "metrics": null,
+      "error": null,
+      "parent_run_id": "fc048467-e5dd-4228-93c5-6d7cad6e85a2_0",
+      "start_time": "2024-04-21T00:06:35.156696Z",
+      "end_time": "2024-04-21T00:06:36.059815Z",
+      "index": 0,
+      "api_calls": [
+        {
+          "name": "get_score",
+          "type": "Function",
+          "inputs": {
+            "source": "${data.source}",
+            "statement": "${data.statement}"
+          },
+          "output": 0.0,
+          "start_time": 1713683195.156812,
+          "end_time": 1713683196.059007,
+          "error": null,
+          "children": [
+            {
+              "name": "openai_chat",
+              "type": "LLM",
+              "inputs": {
+                "messages": [
+                  {
+                    "role": "system",
+                    "content": "You are a INFORMATION OVERLAP classifier; providing the overlap of information between the source and statement.\n        Respond only as a number from 0 to 10 where 0 is no information overlap and 10 is all information is overlapping.\n        Never elaborate."
+                  },
+                  {
+                    "role": "user",
+                    "content": "SOURCE: ${data.source}\n        \n        Hypothesis: ${data.statement}\n        \n        Please answer with the template below for all statement sentences:\n\n        Statement Sentence: <Sentence>, \n        Supporting Evidence: <Choose the exact unchanged sentences in the source that can answer the statement, if nothing matches, say NOTHING FOUND>\n        Score: <Output a number between 0-10 where 0 is no information overlap and 10 is all information is overlapping>\n        \nStatement Sentence: {statement_sentence} \nSupporting Evidence: {supporting_evidence} \nScore: {score} \n"
+                  }
+                ],
+                "model": "gpt-3.5-turbo",
+                "temperature": 0.0,
+                "seed": 123
+              },
+              "output": {
+                "id": "chatcmpl-9GF111OPpPOxFyo4pMCP3aUYY9DtL",
+                "choices": [
+                  {
+                    "finish_reason": "stop",
+                    "index": 0,
+                    "logprobs": null,
+                    "message": {
+                      "content": "Statement Sentence: The sky is blue, \nSupporting Evidence: NOTHING FOUND \nScore: 0 ",
+                      "role": "assistant",
+                      "function_call": null,
+                      "tool_calls": null
+                    }
+                  }
+                ],
+                "created": 1713657995,
+                "model": "gpt-3.5-turbo-0125",
+                "object": "chat.completion",
+                "system_fingerprint": "fp_c2295e73ad",
+                "usage": {
+                  "completion_tokens": 21,
+                  "prompt_tokens": 182,
+                  "total_tokens": 203
+                }
+              },
+              "start_time": 1713683195.428267,
+              "end_time": 1713683196.043501,
+              "error": null,
+              "children": [],
+              "node_name": null,
+              "parent_id": "590d3402-d225-4e31-8540-5b8c51c9a128",
+              "id": "ce47dbcf-17a9-49aa-9a6f-3d6eefc37188",
+              "function": "openai.resources.chat.completions.Completions.create",
+              "system_metrics": {
+                "completion_tokens": 21,
+                "prompt_tokens": 182,
+                "total_tokens": 203
+              }
+            }
+          ],
+          "node_name": "get_score",
+          "parent_id": "",
+          "id": "590d3402-d225-4e31-8540-5b8c51c9a128",
+          "function": "get_score",
+          "system_metrics": {
+            "completion_tokens": 21,
+            "prompt_tokens": 182,
+            "total_tokens": 203
+          }
+        }
+      ],
+      "cached_run_id": null,
+      "cached_flow_run_id": null,
+      "logs": {
+        "stdout": "",
+        "stderr": "[2024-04-21T00:06:35+0000] \rGroundedness per statement in source:   0%|          | 0/1 [00:00<?, ?it/s][2024-04-21T00:06:36+0000] \rGroundedness per statement in source: 100%|##########| 1/1 [00:00<00:00,  1.59it/s][2024-04-21T00:06:36+0000] [2024-04-21T00:06:36+0000] \rGroundedness per statement in source: 100%|##########| 1/1 [00:00<00:00,  1.58it/s]\n"
+      },
+      "system_metrics": {
+        "completion_tokens": 21,
+        "prompt_tokens": 182,
+        "total_tokens": 203,
+        "duration": 0.903119
+      },
+      "result": 0.0,
+      "message_format": "basic"
+    },
+    {
+      "node": "aggregate",
+      "flow_run_id": "fc048467-e5dd-4228-93c5-6d7cad6e85a2",
+      "run_id": "fc048467-e5dd-4228-93c5-6d7cad6e85a2_aggregate_reduce",
+      "status": "Completed",
+      "inputs": {
+        "groundedness_scores": [
+          0.0
+        ]
+      },
+      "output": {
+        "groundedness": 0.0,
+        "count": 1
+      },
+      "metrics": null,
+      "error": null,
+      "parent_run_id": "fc048467-e5dd-4228-93c5-6d7cad6e85a2",
+      "start_time": "2024-04-21T00:06:36.062519Z",
+      "end_time": "2024-04-21T00:06:36.063483Z",
+      "index": null,
+      "api_calls": [
+        {
+          "name": "aggregate",
+          "type": "Function",
+          "inputs": {
+            "groundedness_scores": [
+              0.0
+            ]
+          },
+          "output": {
+            "groundedness": 0.0,
+            "count": 1
+          },
+          "start_time": 1713683196.062613,
+          "end_time": 1713683196.063272,
+          "error": null,
+          "children": [],
+          "node_name": "aggregate",
+          "parent_id": "",
+          "id": "2907f31a-467a-4460-a711-3472b9fcda5f",
+          "function": "aggregate",
+          "system_metrics": {}
+        }
+      ],
+      "cached_run_id": null,
+      "cached_flow_run_id": null,
+      "logs": {
+        "stdout": "[2024-04-21T00:06:36+0000] trajib\n",
+        "stderr": ""
+      },
+      "system_metrics": {
+        "duration": 0.000964
+      },
+      "result": {
+        "groundedness": 0.0,
+        "count": 1
+      },
+      "message_format": "basic"
+    }
+  ]
+}
